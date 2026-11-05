@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 
 class Validator(ABC):
 
-    def __set_name__(self, owner:type, name:str) -> None:
+    def __set_name__(self, owner: type, name: str) -> None:
         self.protected_name = "_" + name
 
     def __get__(
@@ -15,12 +15,12 @@ class Validator(ABC):
             return self
         return getattr(instance, self.protected_name)
 
-    def __set__(self, instance: object, value:object) -> None:
+    def __set__(self, instance: object, value: object) -> None:
         self.validate(value)
         setattr(instance, self.protected_name, value)
 
     @abstractmethod
-    def validate(self, value:object) -> None:
+    def validate(self, value: object) -> None:
         pass
 
 
